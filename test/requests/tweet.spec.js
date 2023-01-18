@@ -205,7 +205,7 @@ describe('# tweet request', () => {
 
       it('POST /tweets/1/like', (done) => {
          // 送出 POST /tweets/1/like
-         request(app)
+        request(app)
           .post('/tweets/1/like')
           .set('Accept', 'application/json')
           .expect(302)
