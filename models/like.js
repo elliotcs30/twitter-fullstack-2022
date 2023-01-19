@@ -1,6 +1,6 @@
-"use strict"
+'use strict'
 module.exports = (sequelize, DataTypes) => {
-	const Like = sequelize.define("Like", {
+	const Like = sequelize.define('Like', {
 	}, {})
 	Like.associate = function(models) {
 	}
