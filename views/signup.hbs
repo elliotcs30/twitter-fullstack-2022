@@ -1,0 +1,56 @@
+<div class="container text-center" style="width: 356px;">
+  <div class="mb-4 mt-5 ">
+    <img src="/icon/logo.png" alt="icon">
+  </div>
+
+  <h3 class="title">建立你的帳號</h3>
+
+  <form class="form-signup" action="/signup" method="POST">
+
+    <div class="signup-container">
+      <label for="account">帳號</label>
+      <input type="text" id="account" name="account" class="signup-input" placeholder="請輸入帳號" value="{{ account }}" required>
+      <div class="signup-status"></div>
+      <div class="signup-helper"></div>
+      <div class="signup-count"></div>
+    </div>
+
+    <div class="signup-container">
+      <label for="name">名稱</label>
+      <input type="text" id="name" name="name" class="signup-input" placeholder="請輸入使用者名稱" value="{{ name }}" required>
+      <div class="signup-status"></div>
+      <div class="signup-helper"></div>
+      <div class="signup-count"></div>
+    </div>
+
+    <div class="signup-container">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" class="signup-input" placeholder="請輸入 Email" value="{{ email }}" required>
+      <div class="signup-status"></div>
+      <div class="signup-helper"></div>
+      <div class="signup-count"></div>
+    </div>
+
+    <div class="signup-container">
+      <label for="password">密碼</label>
+      <input type="password" id="password" name="password" class="signup-input" placeholder="請設定密碼" value="{{ password }}" required>
+      <div class="signup-status"></div>
+      <div class="signup-helper"></div>
+      <div class="signup-count"></div>
+    </div>
+
+    <div class="signup-container">
+      <label for="checkPassword">密碼確認</label>
+      <input type="password" id="checkPassword" name="checkPassword" class="signup-input" placeholder="密碼確認" value="{{ checkPassword }}" required>
+      <div class="signup-status"></div>
+      <div class="signup-helper"></div>
+      <div class="signup-count"></div>
+    </div>
+
+    <button type="submit" class="signup-submit">註冊</button>
+
+    <div class="m-4 text-center">
+      <a href="/signin">取消</a>
+    </div>
+  </form>
+</div>

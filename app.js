@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000
 app.engine('hbs', handlebars({ extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.static('public')) //匯入靜態檔案
+app.use(express.urlencoded({ extended: true }))
 app.use(routes)
 
 // use helpers.getUser(req) to replace req.user
