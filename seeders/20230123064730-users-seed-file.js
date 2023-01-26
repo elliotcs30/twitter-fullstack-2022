@@ -4,38 +4,36 @@ const bcrypt = require('bcryptjs')
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		const password = '12345678'
-		const userLength = 10
-
-		const users = Array.from({ length: userLength }).map((_, i) => ({
-			account: `user${i + 1}`,
-			name: `user${i + 1}`,
-			email: `user${i + 1}@example.com`,
-			password:	bcrypt.hashSync(password, 10),
-			role: 'user',
-			avatar: `https://loremflickr.com/320/240/man,woman/?random=${Math.floor(Math.random() * 50)}`,
-			introduction: faker.lorem.sentence(3),
-			created_at: new Date(),
-			updated_at: new Date()
-		}))
-		
-		// 一次新增 10 筆資料
-		await queryInterface.bulkInsert('Users', [
-			{
-				account: 'root',
-				name: 'root',
-				email: 'root@example.com',
-				password: await bcrypt.hash(password, 10),
-				avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-				introduction: faker.lorem.text(),
-				role: 'admin',
+		// 產生 29 位使用者資訊
+		const usersArray = []
+		for (let i = 1; i < 30; i++) {
+			usersArray.push({
+				email: `user${i}@example.com`,
+				password: await bcrypt.hash('12345678', 10),
+				name: `user${i}`,
+				account: `user${i}`,
+				avatar: `https://randomuser.me/api/portraits/men/${i + 1}.jpg`,
+				introduction: faker.lorem.text().substring(0, 160),
+				role: 'user',
 				created_at: new Date(),
 				updated_at: new Date()
-			}, ...users
-		], {})
-	},
+			})
+		}
 
-	down: (queryInterface, Sequelize) => {
-		return queryInterface.bulkDelete('Users', {})
+		await queryInterface.bulkInsert('Users', [{
+			email: 'root@example.com',
+			password: await bcrypt.hash('12345678', 10),
+			name: 'root',
+			account: 'root',
+			avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+			introduction: faker.lorem.text(),
+			role: 'admin',
+			created_at: new Date(),
+			updated_at: new Date()
+		}, ...usersArray], {})
+	},
+	down: async (queryInterface, Sequelize) => {
+		// 清空資料表中所有資料
+		await queryInterface.bulkDelete('Users', null, {})
 	}
 }
