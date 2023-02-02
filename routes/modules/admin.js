@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const adminController = require('../../controllers/admin-controller')
-router.get('/tweets', adminController.getTweets)
+const { authenticatedAdmin } = require('../../middleware/auth')
+router.get('/tweets', authenticatedAdmin, adminController.getTweets)
 router.use('/', (req, res) => res.redirect('/admin/tweets'))
 
 module.exports = router
