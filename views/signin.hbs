@@ -8,8 +8,7 @@
   <form class="form-signin" action="/signin" method="POST">
     <div class="signin-container">
       <label for="account">帳號</label>
-      <input type="text" id="account" name="account" class="signin-input" placeholder="請輸入帳號" value="{{ account }}"
-        required>
+      <input type="text" id="account" name="account" class="signin-input" placeholder="請輸入帳號" value="{{ account }}" required>
       <div class="signin-status"></div>
       <div class="signin-helper"></div>
       <div class="signin-count"></div>
@@ -17,8 +16,7 @@
 
     <div class="signin-container">
       <label for="password">密碼</label>
-      <input type="password" id="password" name="password" class="signin-input" placeholder="請設定密碼"
-        value="{{ password }}" required>
+      <input type="password" id="password" name="password" class="signin-input" placeholder="請輸入密碼" value="{{ password }}" required>
       <div class="signin-status"></div>
       <div class="signin-helper"></div>
       <div class="signin-count"></div>
@@ -27,11 +25,10 @@
     <div class="mb-4 text-center">
       <button type="submit" class="signin-submit">登入</button>
     </div>
-    
-    <div class="mb-4 text-center">
-      <a href="/signup">註冊</a>
-      <span>•</span>
-      <a href="/admin/signin">後台登入</a>
-    </div>
   </form>
+  <div class="mb-4 text-center">
+    <a href="/signup">註冊</a>
+    <span>•</span>
+    <a href="/admin/signin">後台登入</a>
+  </div>
 </div>
