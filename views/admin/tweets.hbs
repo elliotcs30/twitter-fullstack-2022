@@ -1,1 +1,41 @@
-<div> admin Tweets</div>
+<section class="col-3">
+  {{> admin-tweets-leftbar}}
+</section>
+
+<section class="col-7">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"><h4>推文清單</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each tweets}}
+        <tr>
+          <td><img src="/icon/logo-gray.png" alt="logo"></td>
+          <td>
+            <div class="d-flex">
+              <a href="/users/:{{ this.User.id }}">{{ this.User.name }}</a>
+              <a href="/users/:{{ this.User.id }}">@{{ this.User.account }}</a>
+              <div class="d-flex">
+                ．{{relativeTimeFromNow this.createdAt }}
+                <form action="/admin/tweets/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
+                  <button type="submit" class="btn btn-link link-danger cancel-button"
+                    onclick="return confirm(`確定要刪除 {{ this.User.name }} 的這篇 Tweet 嗎?`)">
+                    <img src="/icon/close.png" alt="X">
+                  </button>
+                </form>
+              </div>
+            </div>  
+            <div>
+              {{this.description}}
+            </div>
+          </td>
+        </tr>       
+      {{/each}}
+    </tbody>
+  </table>
+  <div>
+    {{> tweets-pagination}}
+  </div>
+</section>
