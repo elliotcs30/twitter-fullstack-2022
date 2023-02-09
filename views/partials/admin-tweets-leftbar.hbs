@@ -8,14 +8,14 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/tweets">
-            <img class="leftbar-icon" src="/icon/home.png" alt="推文清單">
+          <a class="nav-link {{#ifCond route 'tweets'}}active{{/ifCond}}" href="/admin/tweets">
+            <img class="leftbar-icon" src="{{#ifCond route 'tweets'}}/icon/home.png{{else}}/icon/home-white.png{{/ifCond}}" alt="推文清單">
             推文清單
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/users">
-            <img class="leftbar-icon" src="/icon/user-white.png" alt="使用者列表">
+          <a class="nav-link {{#ifCond route 'users'}}active{{/ifCond}}"  href="/admin/users">
+            <img class="leftbar-icon" src="{{#ifCond route 'users'}}/icon/user.png{{else}}/icon/user-white.png{{/ifCond}}" alt="使用者列表">
             使用者列表
           </a>
         </li>
