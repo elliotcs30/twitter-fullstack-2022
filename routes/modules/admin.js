@@ -9,6 +9,7 @@ router.post('/signin', passport.authenticate('local', {failureRedirect: '/admin/
 router.get('/logout', adminController.logout)
 router.delete('/tweets/:id', authenticatedAdmin, adminController.deleteTweet)
 router.get('/tweets', authenticatedAdmin, adminController.getTweets)
+router.get('/users', authenticatedAdmin, adminController.getUsers)
 router.use('/', (req, res) => res.redirect('/admin/tweets'))
 
 module.exports = router

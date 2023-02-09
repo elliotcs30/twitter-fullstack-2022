@@ -48,7 +48,6 @@ const adminController = {
 		} catch (err) {
 			next(err)
 		}
-		
 	},
 	deleteTweet: (req, res, next) => {
 		return Promise.all([
@@ -67,6 +66,36 @@ const adminController = {
 			req.flash('success_message', '刪除 tweet 成功!')
 			res.redirect('back')
 		}).catch(err => next(err))
+	},
+	getUsers: async (req, res, next) => {
+		return await User.findAll({
+			nest: true, // 資料庫拿回來的資料可以比較整齊
+			include: [  // 使用 include 取得關聯資料
+				{ model: Tweet, as: 'Tweets', include: [Like] },
+				{ model: User, as: 'Followers' },
+				{ model: User, as: 'Followings'}
+			]
+		}).then(users => {
+			// 整理 users 資料, 把每個 user 項目都拿出來處理一次, 並把新陣列儲存在 users
+			users = users
+				.filter(user => user.role !== 'admin')
+				.map(userData => {
+					userData = userData.toJSON()
+					delete userData.password // 刪除密碼(移除敏感資料)
+
+					return {
+						...userData,
+						// 計算追蹤人數
+						tweetsCount: userData.Tweets.length,
+						likeCounts: userData.Tweets.reduce((acc, cur) => {
+							return acc + cur.Likes.length
+						}, 0),
+						followersCount: userData.Followers.length,
+						followingsCount: userData.Followings.length
+					}
+				})
+			res.render('admin/users', { users })
+		}).catch(err => { next(err) })
 	}
 }
 

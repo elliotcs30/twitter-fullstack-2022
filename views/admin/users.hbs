@@ -1,0 +1,39 @@
+<section class="col-3">
+  {{> admin-tweets-leftbar route='users'}}
+</section>
+
+<section class="col">
+  <div>
+    <h4>使用者列表</h4>
+    <hr style="border:1px solid #E6ECF0">
+  </div>
+  <div class="container row ">
+    {{#each users}}
+      <div class="card" style="width: 18rem;">
+        <img class="card-cover" src="{{this.cover}}" alt="User cover">
+        <div class="card-body">
+          <img class="card-avatar" src="{{this.avatar}}" alt="avatar">
+          <h5 class="card-title">{{this.name}}</h5>
+          <h5 class="card-title">@{{this.account}}</h5>
+          <p class="card-text">
+            <img src="/icon/tweet.png" alt="reply icon">{{this.tweetsCount}}
+            <img src="/icon/like.png" alt="like icon">{{this.likeCounts}}
+          </p>
+          <div>
+            <p><b>{{this.followingsCount}}個</b>跟隨中</p>
+            <p><b>{{this.followersCount}}位</b>跟隨者</p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div>
+    {{> tweets-pagination}}
+  </div>
+</section>
+
+<style>
+  .card-avatar {
+
+  }
+</style>
