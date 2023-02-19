@@ -1,0 +1,19 @@
+{{> tweets-leftbar route="tweets"}}
+
+<div class="col-7 p-0">  
+  <div class="cards-home card-home-container">
+    {{>tweets-header route="replies"}}
+    <div class="card-home-border-top-line"></div>
+    <div class="col tweet-model-container" >
+      {{> replies-reply}}
+      {{> replies-postReply}}
+    </div>
+    <div class="profile-replies">
+      {{#each replies}}
+        {{> tweets-tweet route="replies"}}
+      {{/each}}
+    </div>
+    {{> tweets-postTweet}}
+  </div>
+  {{> tweets-rightbar route='followers'}}
+</div>

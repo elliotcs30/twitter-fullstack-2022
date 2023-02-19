@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { User } = require('../models')
+const { Tweet, User, Like, Reply } = require('../models')
 const { getUser } = require('../_helpers')
 
 const userController = {
@@ -79,6 +79,83 @@ const userController = {
 		req.flash('success_messages', '登出成功!')
 		req.logout()
 		res.redirect('/signin')
+	},
+	getProfile: (req, res) => {
+		return res.render('profile')
+	},
+	getReplies: async (req, res, next) => {
+		try {
+			const user = getUser(req)
+			const id = req.params.id
+			const personal = await User.findByPk(id, {
+				include: [
+					Tweet,
+					{ model: User, as: 'Followers' },
+					{ model: User, as: 'Followings' }
+				]
+			})
+			const repliesList = await Reply.findAll({
+				where: {...personal ? { UserId: personal.id } : {}},
+				include: [
+					User,
+					{ model: Tweet, include: User }
+				],
+				order: [['created_at', 'DESC']]
+			})
+			const replies = repliesList.map(reply => ({
+				...reply.toJSON()
+			}))
+
+			return replies.render('profile_replies', {
+				replies,
+				user,
+				personal: personal.toJSON()
+			})
+		} catch (err) {
+			next(err)
+		}
+	},
+	getLikes: async (req, res, next) => {
+		try {
+			const user = getUser(req)
+			const id = req.params.id
+			const personal = await User.findByPk(id, {
+				include: [
+					Tweet,
+					{ model: User, as: 'Followers'},
+					{ model: User, as: 'Followings' },
+					{ model: Like, as: 'Tweet'}
+				]
+			})
+
+			const likedTweetsId = personal ?.Likes.map(like => like.TweetId)
+			const tweetsList = await Tweet.findAll({
+				where: {
+					...likedTweetsId ? { id: likedTweetsId } : {}
+				},
+				include: [
+					User,
+					Reply,
+					Like
+				],
+				order: [
+					['created_at', 'DESC']
+				]
+			})
+			const tweets = tweetsList.map(tweet => ({
+				...tweet.toJSON(),
+				isLiked: true
+			}))
+			return res.render('profile_likes', { tweets, user, personal: personal.toJSON() })
+		} catch (err) {
+			next(err)
+		}
+	},
+	getSetting: (req, res) => {
+		return res.render('setting')
+	},
+	putSetting: (req, res) => {
+		return res.render('setting')
 	}
 }
 
