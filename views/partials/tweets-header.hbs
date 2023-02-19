@@ -1,0 +1,15 @@
+<div class="card-title d-flex align-items-center card-title-container">
+  <div class="col">
+    <p class="mb-0 tweets-title">
+      {{#ifCond route 'tweets'}}
+        <strong>首頁</strong>
+      {{/ifCond}}
+      {{#ifCond route 'replies'}}
+      <a class="tweet-back" href="/">
+        <img class="tweets-back-icon" src="/icon/back.png" alt="back">
+      </a>
+      <strong class="m-2">推文</strong>
+      {{/ifCond}}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="mx-auto tweets-tweet-container">
+  <div class="row mb-3 g-0">
+    <div class="col-md-1 tweet-avatar">
+      <a href="/users/{{this.User.id}}/tweets">
+        {{#if this.User.avatar}} 
+          <img class="img-fluid rounded-circle m-3 tweet-avatar" src="{{this.User.avatar}}" alt="user-avatar">
+        {{else}}
+          <img class="img-fluid rounded-circle m-3 tweet-avatar" src="/icon/logo-gray.png" alt="user-avatar">
+        {{/if}}
+      </a>
+    </div>
+
+    <div class="col-md-11">
+      <div class="card-body pb-0" style="margin-left:16px;">
+        <a href="/users/{{this.User.id}}/tweets" style="text-decoration: none; color: black;">
+          <h5 class="card-text mb-1">
+            {{this.User.name}}
+            <span class="fs-6 fw-lighter m-1">
+              @{{this.User.account}}．{{relativeTimeFromNow this.createdAt}}
+            </span>
+          </h5>
+        </a>
+        {{#ifCond route 'replies'}}
+          <span>回覆</span>
+          <a href="/users/{{this.Tweet.User.id}}/tweets" style="text-decoration: none; color: black;">
+            <span>@{{this.Tweet.User.account}}</span>
+          </a>
+          <p class="text-break">{{this.comment}}</p>
+        {{/ifCond}}
+
+        {{#ifCond route 'tweets'}}
+          <a href="/tweets/{{this.id}}/replies" style="text-decoration: none; color: black;">
+            <p class="text-break">{{this.description}}</p>
+          </a>
+          <p class="text-start">
+            <form action="/tweets/{{this.id}}/replies" method="GET" style="display: inline;">
+              <button type="submit" style="border: none; background: none;">
+                <img src="/icon/reply.png" alt="reply" style="width: 25px; height: 25px;">
+                <span>{{this.Replies.length}}</span>
+              </button>
+            </form>
+
+            {{#if this.isLiked}}
+              <form action="/tweets/{{this.id}}/unlike" method="POST" style="display: inline;">
+                <small class="text-muted">
+                  <button type="submit" style="border: none; background: none;">
+                    <img src="/icon/like.png" alt="like">
+                    <span>{{this.Likes.length}}</span>
+                  </button>
+                </small>
+              </form>
+            {{else}}
+              <form action="/tweets/{{this.id}}/like" method="POST" style="display: inline;">
+                <small class="text-muted">
+                  <button type="submit" style="border: none; background: none;">
+                    <img src="/icon/unlike.png" alt="unlike">
+                    <span>{{this.Likes.length}}</span>
+                  </button>
+                </small>
+              </form>
+            {{/if}}
+          </p>
+        {{/ifCond}}
+      </div>
+    </div>
+  </div>
+</div>

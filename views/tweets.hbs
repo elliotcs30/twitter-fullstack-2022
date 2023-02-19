@@ -1,1 +1,31 @@
-<div> Tweets </div>
+{{> tweets-leftbar route="tweets"}}
+
+<div class="col-7 p-0">
+  <div class="cards-home card-home-container">
+    {{>tweets-header route="tweets"}}
+    <div class="card-home-border-top-line"></div>
+    <div class="col tweet-model-container" data-bs-toggle="modal" data-bs-target="#tweet-modal">
+      <div class="card-image m-3">
+        {{#if user.avatar}}
+          <img class="user-avatar" src="{{user.avatar}}">
+        {{else}}
+          <img src="/icon/logo-gray.png" alt="user avatar">
+        {{/if}}
+          <span class="tweet-content">有什麼新鮮事?</span>
+      </div>
+      <div class="d-flex justify-content-end m-3">
+        <button class="tweet-submit" type="submit">推文</button>
+      </div>
+    </div>
+    {{> tweets-postTweet}}
+  </div>
+  <div class="tweets-tweet">
+    {{#each tweets}}
+    {{> tweets-tweet route="tweets"}}
+    {{/each}}
+  </div>
+  <div class="footer">
+    {{> tweets-pagination}}
+  </div>
+</div>
+{{> tweets-rightbar}}
