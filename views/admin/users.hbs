@@ -1,39 +1,31 @@
-<section class="col-3">
-  {{> admin-tweets-leftbar route='users'}}
-</section>
+<div class="right-region-users-container d-flex">
+  <section class="left-region-sidebar">
+    {{> admin-tweets-leftbar route='users'}}
+  </section>
 
-<section class="col">
-  <div>
-    <h4>使用者列表</h4>
-    <hr style="border:1px solid #E6ECF0">
-  </div>
-  <div class="container row ">
-    {{#each users}}
-      <div class="card" style="width: 18rem;">
-        <img class="card-cover" src="{{this.cover}}" alt="User cover">
-        <div class="card-body">
-          <img class="card-avatar" src="{{this.avatar}}" alt="avatar">
-          <h5 class="card-title">{{this.name}}</h5>
-          <h5 class="card-title">@{{this.account}}</h5>
-          <p class="card-text">
-            <img src="/icon/tweet.png" alt="reply icon">{{this.tweetsCount}}
-            <img src="/icon/like.png" alt="like icon">{{this.likeCounts}}
-          </p>
-          <div>
-            <p><b>{{this.followingsCount}}個</b>跟隨中</p>
-            <p><b>{{this.followersCount}}位</b>跟隨者</p>
+  <section class="right-region-users-list">
+    <h4 class="user-title">推文清單</h4>
+    <div class="scroll-container row">
+      {{#each users}}
+      <div class="user-card col-lg-3 col-sm-6 col">
+        <div class="user-card-background mt-3">
+          <img class="user-card-cover" src="{{this.cover}}" alt="cover">
+          <div class="name-photo">
+            <img class="user-card-avatar" src="{{this.avatar}}" alt="avatar">
+            <h5 class="name">{{this.name}}</h5>
+            <h5 class="account">@{{this.account}}</h5>
+          </div>
+          <div class="row-actions d-flex justify-content-center">
+            <p><img src="../icon/post-gray.png" alt="tweet picture">{{tweetsCount}}</p>
+            <p><img src="../icon/unlike.png" alt="like picture">{{likesCount}}</p>
+          </div>
+          <div class="follow d-flex justify-content-center">
+            {{followingsCount}}個<span>跟隨中</span>&nbsp;
+            {{followersCount}}個<span>跟隨者</span>
           </div>
         </div>
       </div>
-    {{/each}}
-  </div>
-  <div>
-    {{> admin-tweets-pagination}}
-  </div>
-</section>
-
-<style>
-  .card-avatar {
-
-  }
-</style>
+      {{/each}}
+    </div>
+  </section>
+</div>
