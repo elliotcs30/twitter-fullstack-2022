@@ -1,35 +1,32 @@
-<div>
-  <nav class="leftbar">
-    <div class="container">
-      <ul class="nav list-group">
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/tweets">
-            <img src="/icon/logo.png" alt="logo">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{#ifCond route 'tweets'}}active{{/ifCond}}" href="/admin/tweets">
-            <img class="leftbar-icon" src="{{#ifCond route 'tweets'}}/icon/home.png{{else}}/icon/home-white.png{{/ifCond}}" alt="推文清單">
-            推文清單
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{#ifCond route 'users'}}active{{/ifCond}}"  href="/admin/users">
-            <img class="leftbar-icon" src="{{#ifCond route 'users'}}/icon/user.png{{else}}/icon/user-white.png{{/ifCond}}" alt="使用者列表">
-            使用者列表
-          </a>
-        </li>
+<nav class="leftbar">
+  <ul class="nav list-group side-bar">
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/tweets">
+        <img src="/icon/logo.png" alt="logo">
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {{#ifCond route 'tweets'}}active{{/ifCond}}" href="/admin/tweets">
+        <img class="leftbar-icon" src="{{#ifCond route 'tweets'}}/icon/home.png{{else}}/icon/home-white.png{{/ifCond}}" alt="推文清單">
+        推文清單
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {{#ifCond route 'users'}}active{{/ifCond}}"  href="/admin/users">
+        <img class="leftbar-icon" src="{{#ifCond route 'users'}}/icon/user.png{{else}}/icon/user-white.png{{/ifCond}}" alt="使用者列表">
+        使用者列表
+      </a>
+    </li>
 
-        <li class="nav-item">
-          <button class="btn d-flex logout" id="logout">
-            <img class="leftbar-icon" src="/icon/logout.png" alt="登出">
-            登出
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+    <li class="nav-item">
+      <button class="btn d-flex logout" id="logout">
+        <img class="leftbar-icon" src="/icon/logout.png" alt="登出">
+        登出
+      </button>
+    </li>
+  </ul>
+</nav>
+
 
 <script>
   const logoutBtn = document.getElementById('logout')
