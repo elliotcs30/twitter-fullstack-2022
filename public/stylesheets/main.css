@@ -73,9 +73,10 @@
   font-size: 20px;
 }
 
-/* left bar */
-.leftbar {
- width: 178px;
+/* admin left region sidebar */
+.left-region-sidebar {
+  width: 178px;
+  height: 100vh;
 }
 
 .leftbar-logo {
@@ -110,6 +111,72 @@
   background-color: #FF6600;
   color: #FFFFFF;
   font-size: 20px;
+}
+
+/* admin right region sidebar */
+.right-region-tweet-list {
+  height: 100vh;
+  flex: 1;
+  margin-left: 24px;
+  border-left: 1px solid #E6ECF0;
+  border-right: 1px solid #E6ECF0;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #171725;
+}
+
+.title {
+  margin-top: 24px;
+  margin-bottom: 0px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #E6ECF0;
+  /* color: #171725; */
+}
+
+.scroll-container {
+  height: 85vh;
+  overflow-y: scroll;
+  scrollbar-color: #212529;
+  scrollbar-width: thin;
+}
+
+.tweet-card {
+  position: relative;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E6ECF0;
+}
+
+.head {
+  align-items: center;
+}
+
+.name {
+  margin-right: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  color: #171725;
+}
+
+.account,
+.time {
+  font-weight: 400;
+  font-size: 14px;
+  color: #6C757D;
+  text-decoration: none;
+}
+
+.content {
+  margin-top: 8px;
+  width: 85%;
+}
+
+.cancel-button {
+  padding: 0px;
+  font-size: 14px;
+  position: absolute;
+  right: 1rem;
 }
 
 /* tweets middle */
