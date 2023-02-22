@@ -1,14 +1,10 @@
 <div class="d-flex">
-  <section>
-    {{> messages}}
-  </section>
-
   <section class="left-region-sidebar">
     {{> admin-tweets-leftbar route='tweets'}}
   </section>
 
   <section class="right-region-tweet-list">
-    <h4 class="title">推文清單</h4>
+    <h4 class="tweets-title">推文清單</h4>
     <div class="scroll-container">
       {{#each tweets}}
       <div class="tweet-card d-flex">
