@@ -92,9 +92,23 @@
   padding: 0px;
 }
 
+.nav-link.active {
+  color: #FF6600;
+  padding-bottom: 13px;
+}
+
 .leftbar-text {
   color: #44444F;
   font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.leftbar-text a,
+a:hover,
+a:focus {
+  color: #44444F;
+  text-decoration: none;
 }
 
 .logout {
@@ -249,7 +263,6 @@
 
 .row-actions > p {
   margin: 0.5rem;
-
 }
 
 .row-actions > p > img {
