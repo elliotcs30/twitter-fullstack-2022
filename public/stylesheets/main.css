@@ -92,12 +92,14 @@
   padding: 0px;
 }
 
-.nav-link.active {
+.leftbar-text.active {
   color: #FF6600;
   padding-bottom: 13px;
 }
 
 .leftbar-text {
+  display: block;
+  padding: 0.5rem 1rem;
   color: #44444F;
   font-size: 18px;
   font-weight: bold;
