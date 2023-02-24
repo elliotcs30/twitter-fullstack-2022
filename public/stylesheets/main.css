@@ -25,7 +25,7 @@
   font-size: 16px;
 }
 
-.signup-status, .signin-status {
+.account-status, .password-status {
   left: 0%;
   right: 0%;
   top: 66.67%;
@@ -34,6 +34,10 @@
   border-radius: 0px 0px 4px 4px;
   border: 1px #657786 solid;
   position: absolute;
+}
+
+.status.focus {
+  border-color: #50B5FF;
 }
 
 .signup-helper, .signin-helper {
@@ -71,6 +75,13 @@
   background-color: #FF6600;
   color: #FFFFFF;
   font-size: 20px;
+}
+
+.signup-or-admin {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 22px;
 }
 
 /* admin left region sidebar */
