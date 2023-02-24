@@ -9,40 +9,40 @@
 
     <div class="signup-container">
       <label for="account">帳號</label>
-      <input type="text" id="account" name="account" class="signup-input" placeholder="請輸入帳號" value="{{ account }}" required>
-      <div class="signup-status"></div>
+      <input type="text" id="account" name="account" class="signup-input" placeholder="請輸入帳號" value="{{ account }}" onfocus="changeFocus('account')" onblur="changeFocus('account')" required>
+      <div class="status account-status"></div>
       <div class="signup-helper"></div>
       <div class="signup-count"></div>
     </div>
 
     <div class="signup-container">
       <label for="name">名稱</label>
-      <input type="text" id="name" name="name" class="signup-input" placeholder="請輸入使用者名稱" value="{{ name }}" required>
-      <div class="signup-status"></div>
-      <div class="signup-helper"></div>
-      <div class="signup-count"></div>
+      <input type="text" id="name" name="name" class="signup-input" placeholder="請輸入使用者名稱" value="{{ name }}" onfocus="changeFocus('name')" onblur="changeFocus('name')" oninput="counts()" required>
+      <div class="status name-status"></div>
+      <div class="name-helper"><span></span></div>
+      <div class="name-count"><span>0/50</span></div>
     </div>
 
     <div class="signup-container">
       <label for="email">Email</label>
-      <input type="text" id="email" name="email" class="signup-input" placeholder="請輸入 Email" value="{{ email }}" required>
-      <div class="signup-status"></div>
+      <input type="email" id="email" name="email" class="signup-input" placeholder="請輸入 Email" value="{{ email }}" onfocus="changeFocus('email')" onblur="changeFocus('email')" required>
+      <div class="status email-status"></div>
       <div class="signup-helper"></div>
       <div class="signup-count"></div>
     </div>
 
     <div class="signup-container">
       <label for="password">密碼</label>
-      <input type="password" id="password" name="password" class="signup-input" placeholder="請設定密碼" value="{{ password }}" required>
-      <div class="signup-status"></div>
+      <input type="password" id="password" name="password" class="signup-input" placeholder="請設定密碼" value="{{ password }}" onfocus="changeFocus('password')" onblur="changeFocus('password')" required>
+      <div class="status password-status"></div>
       <div class="signup-helper"></div>
       <div class="signup-count"></div>
     </div>
 
     <div class="signup-container">
       <label for="checkPassword">密碼確認</label>
-      <input type="password" id="checkPassword" name="checkPassword" class="signup-input" placeholder="密碼確認" value="{{ checkPassword }}" required>
-      <div class="signup-status"></div>
+      <input type="password" id="checkPassword" name="checkPassword" class="signup-input" placeholder="密碼確認" value="{{ checkPassword }}" onfocus="changeFocus('check-password')" onblur="changeFocus('check-password')" required>
+      <div class="status check-password-status"></div>
       <div class="signup-helper"></div>
       <div class="signup-count"></div>
     </div>
@@ -54,3 +54,39 @@
     </div>
   </form>
 </div>
+
+<script>
+  function changeFocus(element) {
+    const target = document.querySelector('.' + element + '-status')
+    if (target.classList.contains('focus')) {
+      target.classList.remove('focus')
+      return
+    } else {
+      target.classList.toggle('focus')
+    }
+  }
+  function counts() {
+    const counts = document.querySelector('#name').value.length
+    document.querySelector('.name-count span').innerText = counts + '/50'
+    const status = document.querySelector('.name-status')
+    if (status.classList.contains('focus') && counts > 50) {
+      document.querySelector('.name-helper span').innerText = '字數超出上限!'
+      document.querySelector('.name-helper span').style.color = '#FF0000'
+      status.classList.remove('focus')
+      status.classList.toggle('warn')
+      return
+    }
+    if (status.classList.contains('warn') && counts <= 50) {
+      status.classList.remove('warn')
+      status.classList.toggle('focus')
+      document.querySelector('.name-helper span').innerText = ''
+    }
+  }
+  function checkForm() {
+    const counts = document.querySelector('#name').value.length
+    if (counts > 50) {
+      alert('字數超出上限!')
+      return false
+    }
+  }
+</script>
