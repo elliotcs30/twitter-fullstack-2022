@@ -8,16 +8,16 @@
   <form class="form-signin" action="/signin" method="POST">
     <div class="signin-container">
       <label for="account">帳號</label>
-      <input type="text" id="account" name="account" class="signin-input" placeholder="請輸入帳號" value="{{ account }}" required>
-      <div class="signin-status"></div>
+      <input type="text" id="account" name="account" class="signin-input" placeholder="請輸入帳號" value="{{ account }}" onfocus="changeFocus('account')" onblur="changeFocus('account')" required>
+      <div class="status account-status"></div>
       <div class="signin-helper"></div>
       <div class="signin-count"></div>
     </div>
 
     <div class="signin-container">
       <label for="password">密碼</label>
-      <input type="password" id="password" name="password" class="signin-input" placeholder="請輸入密碼" value="{{ password }}" required>
-      <div class="signin-status"></div>
+      <input type="password" id="password" name="password" class="signin-input" placeholder="請輸入密碼" value="{{ password }}" onfocus="changeFocus('password')" onblur="changeFocus('password')" required>
+      <div class="status password-status"></div>
       <div class="signin-helper"></div>
       <div class="signin-count"></div>
     </div>
@@ -26,9 +26,21 @@
       <button type="submit" class="signin-submit">登入</button>
     </div>
   </form>
-  <div class="mb-4 text-center">
+  <div class="mb-4 signup-or-admin">
     <a href="/signup">註冊</a>
     <span>•</span>
     <a href="/admin/signin">後台登入</a>
   </div>
 </div>
+
+<script>
+  function changeFocus(element) {
+    const target = document.querySelector('.' + element + '-status')
+
+    if (target.classList.contains('focus')) {
+      target.classList.remove('focus')
+      return
+    }
+    target.classList.toggle('focus')
+  }
+</script>
